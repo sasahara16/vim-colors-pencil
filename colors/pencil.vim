@@ -66,6 +66,7 @@ endif
 let s:none            = { "gui": "NONE"  , "cterm": "NONE" }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
 let s:black           = { "gui": "#212121", "cterm": "0"   }
+let s:dark_gray       = { "gui": "#333333", "cterm": "236" }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
@@ -123,7 +124,7 @@ let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 
 if &background == "dark"
   let s:bg              = s:none "s:black
-  let s:bg_subtle       = s:light_black
+  let s:bg_subtle       = s:dark_gray
   let s:bg_very_subtle  = s:subtle_black
   let s:norm            = s:lighter_gray
   let s:norm_subtle     = s:light_gray
@@ -131,12 +132,13 @@ if &background == "dark"
   let s:cyan            = s:light_cyan
   let s:green           = s:light_green
   let s:red             = s:light_red
+  let s:line            = s:light_black
   "let s:visual          = s:lighter_black
   let s:visual_fg       = s:lighter_black
   let s:visual_bg       = s:actual_white
 else
   let s:bg              = s:white
-  let s:bg_subtle       = s:light_gray
+  let s:bg_subtle       = s:medium_gray
   let s:bg_very_subtle  = s:lighter_gray
   let s:norm            = s:light_black
   let s:norm_subtle     = s:lighter_black
@@ -145,6 +147,7 @@ else
   let s:green           = s:dark_green
   let s:red             = s:dark_red
   "let s:visual          = s:light_blue
+  let s:line            = s:medium_gray
   let s:visual_fg       = s:actual_white
   let s:visual_bg       = s:subtle_black
 endif
@@ -251,9 +254,7 @@ call s:h("IncSearch",     {"bg": s:search_bg, "fg": s:search_fg})
 call s:h("Search",        {"bg": s:search_bg, "fg": s:search_fg})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "gui": "bold", "cterm": "bold"})
 hi! link ModeMsg MoreMsg
-"call s:h("LineNr",        {"fg": s:bg_subtle})
-call s:h("LineNr",        {"fg": s:bg_subtle})
-
+call s:h("LineNr",        {"fg": s:line})
 call s:h("CursorLineNr",  {"fg": s:blue, "bg": s:bg_very_subtle})
 call s:h("Question",      {"fg": s:red})
 call s:h("StatusLine",    {"bg": s:bg_very_subtle})
@@ -266,7 +267,9 @@ call s:h("Title",         {"fg": s:dark_blue})
 call s:h("Visual",        {"fg": s:visual_fg, "bg": s:visual_bg})
 call s:h("VisualNOS",     {"bg": s:bg_subtle})
 call s:h("WarningMsg",    {"fg": s:red})
-call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
+
+call s:h("WildMenu",      {"fg": s:white, "bg": s:medium_gray})
+
 call s:h("Folded",        {"fg": s:medium_gray})
 call s:h("FoldColumn",    {"fg": s:bg_subtle})
 call s:h("DiffAdd",       {"bg": s:bg_subtle, "fg": s:green})
